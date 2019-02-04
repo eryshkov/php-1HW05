@@ -17,5 +17,21 @@ function existsUser($login): bool
 assert(true === existsUser('eug'));
 assert(true === existsUser('tmp'));
 assert(true === existsUser('admin'));
-//assert(true === existsUser('none'));
+assert(false === existsUser('none'));
 
+function checkPassword($login, $password):bool
+{
+    if (existsUser($login)) {
+        $users = getUsersList();
+        return password_verify($password, $users[$login]);
+    }
+
+    return false;
+}
+
+assert(true === checkPassword('eug', '123'));
+assert(true === checkPassword('tmp', 'qwerty'));
+assert(true === checkPassword('admin', 'iphone'));
+assert(false === checkPassword('none', 'test'));
+assert(false === checkPassword('admin', 'test3'));
+assert(false === checkPassword('none2', ''));
