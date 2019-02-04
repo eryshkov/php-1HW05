@@ -17,6 +17,7 @@
 <div class="container">
     <a href="/01" class="btn btn-primary">Task 1</a>
     <a href="/01/users.php" class="btn btn-primary">Users</a>
+    <a href="/01/functions.php" class="btn btn-primary">Functions</a>
 </div>
 </body>
 </html>
