@@ -19,7 +19,7 @@ assert(true === existsUser('tmp'));
 assert(true === existsUser('admin'));
 assert(false === existsUser('none'));
 
-function checkPassword($login, $password):bool
+function checkPassword($login, $password): bool
 {
     if (existsUser($login)) {
         $users = getUsersList();
