@@ -35,3 +35,8 @@ assert(true === checkPassword('admin', 'iphone'));
 assert(false === checkPassword('none', 'test'));
 assert(false === checkPassword('admin', 'test3'));
 assert(false === checkPassword('none2', ''));
+
+function getCurrentUser()
+{
+
+}
