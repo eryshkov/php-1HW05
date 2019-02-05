@@ -11,10 +11,15 @@
 </p>
 
 ## Информация для проверяющего
-* код к каждому заданию находится в папке под номером, который соответствует номеру задания
+* для задач 1, 2 и 3 решение находится в папке `01`
+* для задачи 4 решение находится в папке `02`
 
 ## Main functionality
-* uses 
+* identification, authentication & authorization are implemented
+* uses `date()` function with ISO-8601 compatible format
+* uses `file_put_contents()` function
+* uses `implode`
+* uses `session_start()` & `SESSION` engine
 
 ## Credits
 * thanks to **Albert Stepantsev** and to his [awesome school](https://pr-of-it.ru/courses/php-1.html)
