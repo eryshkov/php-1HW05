@@ -1,3 +1,30 @@
+<?php
+session_start();
+
+include __DIR__ . '/functions.php';
+
+if (null != getCurrentUser()) {
+    header('Location: ' . '/02/');
+    exit();
+}
+
+$userName = '';
+$userPassword = '';
+
+if (isset($_POST['login'])) {
+    $userName = $_POST['login'];
+}
+if (isset($_POST['password'])) {
+    $userPassword = $_POST['password'];
+}
+
+if (checkPassword($userName, $userPassword)) {
+    $_SESSION['user'] = $userName;
+    header('Location: ' . '/02/');
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -10,13 +37,16 @@
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
 
-    <title>HomeWork 5</title>
+    <title>Login</title>
 </head>
 <body>
 <p></p>
 <div class="container">
-    <a href="/01" class="btn btn-primary">Task 1</a>
-    <a href="/02" class="btn btn-primary">Task 2</a>
+    <form action="/02/login.php" method="post">
+        <label>Login: </label><input type="text" name="login"><br>
+        <label>Password: </label><input type="password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
 </div>
 </body>
 </html>
