@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+include __DIR__ . '/functions.php';
+
+if (null != getCurrentUser()) {
+    header('Location: ' . '/01/index.php');
+    exit();
+}
+
 $userName = '';
 $userPassword = '';
 
@@ -14,6 +21,7 @@ if (isset($_POST['password'])) {
 if (checkPassword($userName, $userPassword)) {
     $_SESSION['user'] = $userName;
 }
+
 ?>
 
 <!doctype html>
@@ -33,7 +41,7 @@ if (checkPassword($userName, $userPassword)) {
 <body>
 <p></p>
 <div class="container">
-    <form action="/01/login.php" method="post" enctype="text/plain">
+    <form action="/01/login.php" method="post">
         <label>Login: </label><input type="text" name="login"><br>
         <label>Password: </label><input type="password" name="password"><br>
         <button type="submit">Login</button>
