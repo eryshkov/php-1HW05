@@ -3,6 +3,11 @@ session_start();
 
 include __DIR__ . '/functions.php';
 
+if (null != getCurrentUser()) {
+    header('Location: ' . '/01/');
+    exit();
+}
+
 $userName = '';
 $userPassword = '';
 
@@ -15,10 +20,7 @@ if (isset($_POST['password'])) {
 
 if (checkPassword($userName, $userPassword)) {
     $_SESSION['user'] = $userName;
-}
-
-if (null != getCurrentUser()) {
-    header('Location: ' . '/01/index.php');
+    header('Location: ' . '/01/');
     exit();
 }
 ?>
