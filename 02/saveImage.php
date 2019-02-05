@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+include __DIR__ . '/functions.php';
+
+if (null == getCurrentUser()) {
+    header('Location: ' . '/02/login.php');
+    exit();
+}
+
+$userName = getCurrentUser();
+
 $isSuccess = false;
 $imageName = ' ';
 
