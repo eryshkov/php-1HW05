@@ -44,7 +44,7 @@ foreach ($dirContents as $item) {
 <body>
 <div class="container">
     <p></p>
-    <p>Welcome back, <?php echo $userName; ?></p>
+    <p>Welcome back, <strong><?php echo $userName; ?></strong></p>
     <div class="row">
         <?php
         foreach ($images as $id => $imageName) {
