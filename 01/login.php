@@ -1,5 +1,19 @@
 <?php
-session_start()
+session_start();
+
+$userName = '';
+$userPassword = '';
+
+if (isset($_POST['login'])) {
+    $userName = $_POST['login'];
+}
+if (isset($_POST['password'])) {
+    $userPassword = $_POST['password'];
+}
+
+if (checkPassword($userName, $userPassword)) {
+    $_SESSION['user'] = $userName;
+}
 ?>
 
 <!doctype html>
@@ -20,7 +34,7 @@ session_start()
 <p></p>
 <div class="container">
     <form action="/01/login.php" method="post" enctype="text/plain">
-        <label>Login: </label><input type="text" name="user"><br>
+        <label>Login: </label><input type="text" name="login"><br>
         <label>Password: </label><input type="password" name="password"><br>
         <button type="submit">Login</button>
     </form>
