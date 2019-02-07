@@ -3,11 +3,6 @@ session_start();
 
 include __DIR__ . '/functions.php';
 
-if (null == getCurrentUser()) {
-    header('Location: ' . '/02/login.php');
-    exit();
-}
-
 $userName = getCurrentUser();
 
 $pathToImagesFolder = __DIR__ . '/img/';
@@ -44,7 +39,13 @@ foreach ($dirContents as $item) {
 <body>
 <div class="container">
     <p></p>
-    <p>Welcome back, <strong><?php echo $userName; ?></strong></p>
+    <p>
+        <?php if (null !== $userName) {
+            ?>Welcome back, <strong><?php echo $userName; ?></strong><?php
+        } else {
+            ?><a href="/02/login.php">Sign in</a> <?php
+        } ?>
+    </p>
     <div class="row">
         <?php
         foreach ($images as $id => $imageName) {
@@ -63,13 +64,16 @@ foreach ($dirContents as $item) {
     </div>
     <br>
     <br>
-    <div class="row">
-        <form action="/02/saveImage.php" method="post" enctype="multipart/form-data">
-            <label>Новая картинка:</label><input type="file" name="image">
-            <br>
-            <button type="submit">Send</button>
-        </form>
-    </div>
+    <?php if (null !== $userName) {
+        ?>
+        <div class="row">
+            <form action="/02/saveImage.php" method="post" enctype="multipart/form-data">
+                <label>Новая картинка:</label><input type="file" name="image">
+                <br>
+                <button type="submit">Send</button>
+            </form>
+        </div><?php
+    } ?>
 </div>
 </body>
 </html>
