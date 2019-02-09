@@ -24,9 +24,7 @@ if (isset($_FILES['image'])) {
         if ($isImage) {
             $isSuccess = move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $imageName);
 
-            $date = date(DATE_ATOM);
-            $logString = [$date, $userName, 'save image', $imageName];
-            file_put_contents(__DIR__ . '/img/log.txt', implode(' | ', $logString) . PHP_EOL, FILE_APPEND);
+            writeLog(__DIR__ . '/img/log.txt', $userName, $imageName);
         }
     }
 }
