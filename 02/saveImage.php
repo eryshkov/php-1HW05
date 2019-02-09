@@ -31,10 +31,10 @@ if (isset($_FILES['image'])) {
     }
 }
 
-if ($isSuccess) {
+if (true === $isSuccess) {
     header('Location:' . '/02/');
     exit;
-} elseif (!$isImage) {
+} elseif (false === $isImage) {
     ?>Загруженный файл не является изображением<?php
 } else {
     ?>Не удалось сохранить файл <?php echo $imageName; ?>на сервере<?php
