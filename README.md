@@ -11,8 +11,7 @@
 </p>
 
 ## Информация для проверяющего
-* для задач 1, 2 и 3 решение находится в папке `01`
-* для задачи 4 решение находится в папке `02`
+* для всех задач решение находится в папке `02`
 
 ## Main functionality
 * identification, authentication & authorization are implemented
