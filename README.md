@@ -11,7 +11,7 @@
 </p>
 
 ## Информация для проверяющего
-* для всех задач решение находится в папке `02`
+* отсутствует
 
 ## Main functionality
 * identification, authentication & authorization are implemented
