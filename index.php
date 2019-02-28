@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+include __DIR__ . '/functions.php';
+
+$userName = getCurrentUser();
+
+$pathToImagesFolder = __DIR__ . '/img/';
+$urlToImagesFolder = '/img/';
+
+$dirContents = scandir($pathToImagesFolder, SCANDIR_SORT_NONE);
+
+$images = [];
+
+foreach ($dirContents as $item) {
+    $fileType = mime_content_type($pathToImagesFolder . $item);
+    $isImage = strpos($fileType, 'image') === 0;
+
+    if ($isImage) {
+        $images[] = $item;
+    }
+
+}
+
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -9,13 +34,53 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
-
-    <title>HomeWork 5</title>
+    <title>Home Work 05.02</title>
 </head>
 <body>
 <p></p>
 <div class="container">
-    <a href="/02" class="btn btn-primary">Gallery</a>
+    <div class="row">
+        <div class="col">
+            <p>
+                <?php if (null !== $userName) {
+                    ?>Welcome back, <strong><?php echo $userName; ?></strong>!<?php
+                } else {
+                    ?><a href="/login.php">Sign in</a> <?php
+                } ?>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <?php
+        foreach ($images as $id => $imageName) {
+            ?>
+            <?php echo PHP_EOL; ?>
+            <div class="col"><?php echo PHP_EOL;
+                $imagePath = $pathToImagesFolder . $imageName;
+                $imageURL = $urlToImagesFolder . $imageName;
+                ?>
+                <img src="<?php echo $imageURL; ?>" <?php echo getimagesize($imagePath)[3]; ?>>
+                <?php echo PHP_EOL; ?>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+    <?php if (null !== $userName) {
+        ?>
+        <div class="row">
+            <div class="col">
+                <p></p>
+                <form action="/saveImage.php" method="post" enctype="multipart/form-data">
+                    <label>Новая картинка:</label><input type="file" name="image">
+                    <br>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div><?php
+    } ?>
 </div>
 </body>
 </html>
+
+

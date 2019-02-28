@@ -4,7 +4,7 @@ session_start();
 include __DIR__ . '/functions.php';
 
 if (null == getCurrentUser()) {
-    header('Location: ' . '/02/login.php');
+    header('Location: ' . '/login.php');
     exit();
 }
 
@@ -30,7 +30,7 @@ if (isset($_FILES['image'])) {
 }
 
 if (true === $isSuccess) {
-    header('Location:' . '/02/');
+    header('Location:' . '/');
     exit;
 } elseif (false === $isImage) {
     ?>Загруженный файл не является изображением<?php

@@ -21,7 +21,7 @@ if (isset($_POST['password'])) {
 
 if (checkPassword($userName, $userPassword)) {
     $_SESSION['user'] = $userName;
-    header('Location: ' . '/02/');
+    header('Location: ' . '/');
     exit();
 }
 ?>
@@ -43,11 +43,15 @@ if (checkPassword($userName, $userPassword)) {
 <body>
 <p></p>
 <div class="container">
-    <form action="/02/login.php" method="post">
-        <label>Login: </label><input type="text" name="login"><br>
-        <label>Password: </label><input type="password" name="password"><br>
-        <button type="submit">Login</button>
-    </form>
+    <div class="row">
+        <div class="col">
+            <form action="/login.php" method="post">
+                <label>Login: </label><input type="text" name="login"><br>
+                <label>Password: </label><input type="password" name="password"><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
