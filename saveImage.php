@@ -3,7 +3,7 @@ session_start();
 
 include __DIR__ . '/functions.php';
 
-if (null == getCurrentUser()) {
+if (null === getCurrentUser()) {
     header('Location: ' . '/login.php');
     exit();
 }
